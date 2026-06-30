@@ -33,17 +33,17 @@ try:
       #st.write(ingredients_string)
   
       # SQL statement to insert order into database (assuming proper handling of SQL injection risk)
-        my_insert_stmt = """INSERT INTO smoothies.public.orders(ingredients, name_on_order) VALUES ('{}', '{}')""".format(ingredients_string, name_on_order)
+      my_insert_stmt = """INSERT INTO smoothies.public.orders(ingredients, name_on_order) VALUES ('{}', '{}')""".format(ingredients_string, name_on_order)
 
-        # Button to submit order
-        time_to_insert = st.button('Submit Order')
-        if time_to_insert:
-            try:
-                # Execute SQL insert statement
-                session.sql(my_insert_stmt).collect()
-                st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
-            except Exception as e:
-                st.error(f"Failed to submit order: {str(e)}")
+      # Button to submit order
+      time_to_insert = st.button('Submit Order')
+      if time_to_insert:
+          try:
+              # Execute SQL insert statement
+              session.sql(my_insert_stmt).collect()
+              st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
+          except Exception as e:
+              st.error(f"Failed to submit order: {str(e)}")
         
 except Exception as ex:
     st.error(f"An error occurred: {str(ex)}")
