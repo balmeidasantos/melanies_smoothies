@@ -25,11 +25,13 @@ try:
   ingredients_list = st.multiselect('Choose up to 5 ingredients:', my_dataframe, max_selections=5)
   
   if ingredients_list:
-      
       ingredients_string = ''
   
       for fruit_chosen in ingredients_list:
           ingredients_string += fruit_chosen + ' '
+          smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")  
+          #st.text(smoothiefroot_response.json())
+          st_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
           
       #st.write(ingredients_string)
   
@@ -45,9 +47,6 @@ try:
               st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
           except Exception as e:
               st.error(f"Failed to submit order: {str(e)}")
-      smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")  
-      #st.text(smoothiefroot_response.json())
-      st_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
         
 except Exception as ex:
     st.error(f"An error occurred: {str(ex)}")
