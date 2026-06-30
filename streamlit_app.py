@@ -32,10 +32,11 @@ try:
           
       #st.write(ingredients_string)
   
-      my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
-                      values ('""" + ingredients_string + """','"""+ name_on_order + """')"""
-  
-      # Button to submit order
+      # SQL statement to insert order into database (assuming proper handling of SQL injection risk)
+        my_insert_stmt = """INSERT INTO smoothies.public.orders(ingredients, name_on_order)
+                            VALUES ('{}', '{}')""".format(ingredients_string, name_on_order)
+
+        # Button to submit order
         time_to_insert = st.button('Submit Order')
         if time_to_insert:
             try:
