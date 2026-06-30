@@ -35,12 +35,18 @@ try:
       my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
                       values ('""" + ingredients_string + """','"""+ name_on_order + """')"""
   
-      st.write(my_insert_stmt)
-      #st.stop()
-      time_to_insert = st.button("Submit Order")
-      if time_to_insert:
-          session.sql(my_insert_stmt).collect()
-          st.success('Your Smoothie is ordered!', icon="✅")
+      # Button to submit order
+        time_to_insert = st.button('Submit Order')
+        if time_to_insert:
+            try:
+                # Execute SQL insert statement
+                session.sql(my_insert_stmt).collect()
+                st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
+            except Exception as e:
+                st.error(f"Failed to submit order: {str(e)}")
+        
+except Exception as ex:
+    st.error(f"An error occurred: {str(ex)}")
       
 # Display a link
 st.write("https://github.com/brunadsa")
