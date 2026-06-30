@@ -33,8 +33,7 @@ try:
       #st.write(ingredients_string)
   
       # SQL statement to insert order into database (assuming proper handling of SQL injection risk)
-        my_insert_stmt = """INSERT INTO smoothies.public.orders(ingredients, name_on_order)
-                            VALUES ('{}', '{}')""".format(ingredients_string, name_on_order)
+        my_insert_stmt = """INSERT INTO smoothies.public.orders(ingredients, name_on_order) VALUES ('{}', '{}')""".format(ingredients_string, name_on_order)
 
         # Button to submit order
         time_to_insert = st.button('Submit Order')
