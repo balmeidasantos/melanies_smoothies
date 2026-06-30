@@ -46,7 +46,8 @@ try:
           except Exception as e:
               st.error(f"Failed to submit order: {str(e)}")
       smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")  
-      st.text(smoothiefroot_response.json())
+      #st.text(smoothiefroot_response.json())
+      st_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
         
 except Exception as ex:
     st.error(f"An error occurred: {str(ex)}")
