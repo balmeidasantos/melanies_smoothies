@@ -4,9 +4,6 @@ import os
 from snowflake.snowpark.functions import col
 import requests  
 
-smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)")  
-st.text(smoothiefroot_response)
-
 # Write directly to the app
 st.title(f"Customize Your Smoothie!:cup_with_straw:")
 st.write(
@@ -48,6 +45,8 @@ try:
               st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
           except Exception as e:
               st.error(f"Failed to submit order: {str(e)}")
+      smoothiefroot_response = requests.get("[https://my.smoothiefroot.com/api/fruit/watermelon](https://my.smoothiefroot.com/api/fruit/watermelon)")  
+      st.text(smoothiefroot_response.json())
         
 except Exception as ex:
     st.error(f"An error occurred: {str(ex)}")
